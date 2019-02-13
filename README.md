@@ -1,3 +1,6 @@
+*Optimized for desktop view. Not fully optimized for mobile.
+https://jgsocialboston.herokuapp.com/
+
 
 Django - Boston Social Media Project
 - [x] Create virtual environment
