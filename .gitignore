@@ -1,0 +1,6 @@
+db.sqlite3
+settings.py
+Procfile
+requirements.txt
+staticfiles
+media

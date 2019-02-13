@@ -1,0 +1,32 @@
+{% extends "socialhome/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'socialhome/main.css' %}">
+
+<div class= "mx-auto">
+<a href="{% url 'homepage' %}"> < Back to home </a>
+<p></p>
+<div class="card" style="width: 40rem;">
+  <h5 class="card-header text-white bg-info text-center">
+    <strong>Delete Post</strong>
+  </h5>
+	<div class="text-center content-section">
+		  <h5> <b>Are you sure that you want to delete:</b> {{ post.text }} ?</h5>
+		<form method="post">
+			<fieldset class = "form-group">
+				{% csrf_token %}
+			</fieldset>
+			<div class="mx-auto text-center">
+		    <input class="btn btn-outline-danger" type="submit" value="Delete Post">
+			</div>
+		</form>
+	</div>		
+</div>	
+</div>
+
+{% endblock %}
+
+

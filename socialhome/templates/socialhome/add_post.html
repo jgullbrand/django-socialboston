@@ -1,0 +1,30 @@
+{% extends "socialhome/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'socialhome/main.css' %}">
+
+<div class= "mx-auto">
+<a href="{% url 'homepage' %}"> < Back to home </a>
+<p></p>
+<div class="card" style="width: 40rem;">
+  <h5 class="card-header text-white bg-info text-center">
+    <strong>Post to the Boston Community!</strong>
+  </h5>
+	<div class="content-section">
+		<form method="post">
+			<fieldset class = "form-group">
+				{% csrf_token %}
+			    {{ form|crispy }}
+			</fieldset>
+			<div class="mx-auto text-center">
+		    <input class="btn btn-info" type="submit" value="Post Now">
+			</div>
+		</form>
+	</div>		
+</div>	
+</div>
+{% endblock %}
+

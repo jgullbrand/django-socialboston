@@ -1,0 +1,30 @@
+{% extends "socialhome/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'socialhome/main.css' %}">
+
+<div class= "mx-auto">
+<div class="card">
+  <h5 class="card-header text-white bg-info text-center">
+    <strong>Register in the Boston Community!</strong>
+  </h5>
+	<div class="content-section">
+		<form method="post">
+			<fieldset class = "form-group">
+				{% csrf_token %}
+			    {{ form|crispy }}
+			</fieldset>
+			<div class="mx-auto text-center">
+		    <input class="btn btn-info" type="submit" value="Create Account">
+			</div>
+		</form>
+	</div>	
+	<p align="center"> Already have an account? Log in <a href="{% url 'login' %}">here</a>.</p>		
+</div>	
+</div>
+{% endblock %}
+

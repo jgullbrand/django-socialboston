@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>What's going on, Boston?</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'socialhome/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'socialhome/css/blog-post.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'homepage' %}">What's going on, Boston?</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a href="{% url 'add_post' %}"><button type="button" class="btn btn-dark mr-4">Create Post</button></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mr-4" href="{% url 'profile' %}">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link mr-4" href="{% url 'register' %}">Create Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mr-4" href="{% url 'login' %}">Log In</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav> 
+
+    <main role="main" class="container">
+      <div class="row">
+          {% block content %}{% endblock %}
+      </div>
+    </main>
+
+  <!-- Footer -->
+  <footer class="fixed-bottom py-2 bg-info">
+    <div class="container">
+      <p class="m-0 text-center text-white">&copy; What's Going on, Boston?</p>
+      <p></p>
+      <p class="m-0 text-center text-white"> Created by Jamie Gullbrand - Feb 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'socialhome/vendor/jquery/jquery.min.js' }%"></script>
+  <script src="{% static 'socialhome/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

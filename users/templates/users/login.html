@@ -1,0 +1,37 @@
+{% extends "socialhome/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'socialhome/main.css' %}">
+
+<div class= "mx-auto">
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-primary" role="alert">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}	
+<p></p>
+<div class="card" style="width: 25rem;">
+  <h5 class="card-header text-white bg-info text-center">
+    <strong>Log in to your Account!</strong>
+  </h5>
+	<div class="content-section">
+		<form method="post">
+			<fieldset class = "form-group">
+				{% csrf_token %}
+			    {{ form|crispy }}
+			</fieldset>
+			<div class="mx-auto text-center">
+		    <input class="btn btn-info" type="submit" value="Log In">
+			</div>
+		</form>
+	</div>		
+	<p align="center"> Haven't created an account? Create one <a href="{% url 'register' %}">here</a>.</p>
+</div>	
+</div>
+{% endblock %}
+

@@ -1,0 +1,87 @@
+{% extends "socialhome/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'socialhome/main.css' %}">
+ 
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+
+      {% for post in object_list %}
+      <article class="media content-section">
+        <img class="mr-3 rounded-circle article-img" src="{{ post.author.profile.image.url }}" height="85px" width="85px" margin-right = "30px">    
+        <div class="media-body">
+          <div class="article-metadata">
+            <span class="text-primary">{{ post.author }}</span>
+            <small class="text-muted">{{ post.post_date }}</small>
+          </div>
+          <h4><a class="article-title" href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h4>
+          <p class="mb-3 article-content">{{ post.text }}</p>
+          <span class ="mt-4 bottomtag"> <a href="{% url 'post_detail' post.id %}" class="text-warning">{{ post.tag }} </a> </span>
+        </div>
+      </article>
+      {% endfor %}
+
+        <div align="center">
+          <br>
+            {% if is_paginated %}
+
+              {% if page_obj.has_previous %}
+                <a class = "btn btn-outline-info mb-4" href="?page=1">First</a>
+                <a class = "btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+              {% endif %}
+
+              {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                  <a class = "btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:"-3" and num < page_obj.number|add:"3" %}
+                  <a class = "btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+              {% endfor %}
+
+              {% if page_obj.has_next %}
+                <a class = "btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class = "btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+              {% endif %}   
+            
+            {% endif %}
+        </div>
+    </div>
+
+      <!-- Sidebar Widgets Column -->
+      <div class="col-3">
+
+      <!-- Side Widget -->
+
+        <div class="card my-0 text-center">
+          <h5 class="card-header text-white bg-info">Profile</h5>
+          <img class="card-img-top" src="{{ user.profile.image.url }}">
+          <div class="card-body">
+            <h6 class="card-title">{{ user.username }}</h6>
+            <a href="{% url 'profile' %}" class="btn btn-info">See Profile</a>
+          </div>
+        </div>  
+
+        <!-- Side Widget -->
+        <div class="card my-4 text-center">
+          <h5 class="card-header text-white bg-info">Stay Connected to the Boston Community! Please post: </h5>
+          <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Events & Promotions</li>
+                <li class="list-group-item">News & Updates</li>
+                <li class="list-group-item">Questions</li>
+              </ul>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+{% endblock content %}  

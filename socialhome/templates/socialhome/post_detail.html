@@ -1,0 +1,32 @@
+{% extends "socialhome/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'socialhome/main.css' %}">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+      	<a href="{% url 'homepage' %}"> < Back to home </a>
+		<p></p>
+	    <article class="media content-section">
+	      <img class="mr-3 rounded-circle article-img" src="{{ user.profile.image.url }}" height="85px" width="85px" margin-right = "30px">    
+	      <div class="media-body">
+	        <div class="article-metadata">
+	          <span class="text-primary">{{ object.author }}</span>
+	          <small class="mr-4 text-muted">{{ object.post_date }}</small>
+	          {% if object.author == user %}
+	          <a class="mr-2 btn btn-outline-info btn-sm" href="{% url 'post_update' object.id %}">Update</a>
+	          <a class="btn btn-outline-danger btn-sm" href="{% url 'post_delete' object.id %}">Delete</a>
+	          {% endif %}
+	        </div>
+	        <h4 class="article-title">{{ object.title }}</h4>
+	        <p class="article-content">{{ object.text }}</p>
+	        <p class = "bottomtag text-warning">{{ object.tag }} </p>
+	      </div>
+	    </article>
+	  </div>
+	 </div>
+	 </div>
+
+{% endblock %}

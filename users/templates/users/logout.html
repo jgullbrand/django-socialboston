@@ -1,0 +1,13 @@
+{% extends "socialhome/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class= "mx-auto">
+	<p></p>
+	<h3>Successfully logged out!</h3>
+	<h5>You can log back in here: <a href="{% url 'login' %}">Log In</a></h5>
+</div>
+{% endblock %}
+

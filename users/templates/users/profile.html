@@ -1,0 +1,41 @@
+{% extends "socialhome/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'socialhome/main.css' %}">
+
+<div class= "mx-auto">
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-primary" role="alert">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}	
+<br>
+<h5 class="text-center card-header text-white bg-info">Profile</h5>
+<article class="media content-section">
+<img class="mr-3 rounded-circle" src="{{ user.profile.image.url }}" height="185px" width="185px">
+<div>
+<br>
+<h5><b>Username:</b> {{user.username}} </h5>
+<br>
+<h5><b>Email:</b> {{user.email}} </h5>
+</div>
+</article>
+<form method="post" enctype="multipart/form-data">
+	<fieldset class = "form-group">
+		{% csrf_token %}
+		{{ u_update_form|crispy }}
+	    {{ p_update_form|crispy }}
+	</fieldset>
+	<div class="mx-auto text-center">
+    <input class="btn btn-info" type="submit" value="Update Information">
+	</div>
+</form>
+</div>
+
+{% endblock %}
