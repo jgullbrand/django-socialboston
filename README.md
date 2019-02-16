@@ -1,5 +1,5 @@
 *Optimized for desktop view. Not fully optimized for mobile.
-https://jgsocialboston.herokuapp.com/
+https://socialbostonjg10.herokuapp.com/
 
 ![fullfeed](https://user-images.githubusercontent.com/40340806/52741139-a753b880-2fa2-11e9-90df-6fbb238889af.png)
 
